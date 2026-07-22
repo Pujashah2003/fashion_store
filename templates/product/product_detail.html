@@ -1,19 +1,67 @@
-<h2>{{ product.name }}</h2>
+{% load static %}
 
-<img src="{{ product.image.url }}" width="300">
+<!DOCTYPE html>
+<html>
 
-<p>{{ product.category.name }}</p>
+<head>
 
-<p>{{ product.description }}</p>
+<title>{{product.name}}</title>
 
-<p>Rs. {{ product.price }}</p>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-<p>Stock : {{ product.stock }}</p>
+</head>
 
-{% if product.is_available %}
-<p>Available</p>
-{% else %}
-<p>Out of Stock</p>
-{% endif %}
 
-<button>Add to Cart</button>
+<body>
+
+
+<div class="container">
+
+
+<div class="product-detail">
+
+
+<img src="{{product.image.url}}">
+
+
+<div class="detail-info">
+
+
+<h1>
+{{product.name}}
+</h1>
+
+
+<h3>
+Category:
+{{product.category.name}}
+</h3>
+
+
+<p>
+{{product.description}}
+</p>
+
+
+<h2>
+Rs. {{product.price}}
+</h2>
+
+
+<button>
+Add To Cart
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</body>
+
+</html>
