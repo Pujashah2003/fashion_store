@@ -195,3 +195,17 @@ body{
     }
 
 }
+.add-cart-btn{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 24px;
+    background:#222;
+    color:white;
+    text-decoration:none;
+    border-radius:5px;
+    transition:0.3s;
+}
+
+.add-cart-btn:hover{
+    background:#e91e63;
+}

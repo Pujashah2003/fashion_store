@@ -32,32 +32,19 @@
 </h1>
 
 
-<h3>
-Category:
-{{product.category.name}}
-</h3>
+<h3>Category: {{ product.category.name }}</h3>
 
+            <p>{{ product.description }}</p>
 
-<p>
-{{product.description}}
-</p>
+            <h2>Rs. {{ product.price }}</h2>
 
+            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-dark">
+                Add To Cart
+            </a>
 
-<h2>
-Rs. {{product.price}}
-</h2>
+        </div>
 
-
-<button>
-Add To Cart
-</button>
-
-
-</div>
-
-
-</div>
-
+    </div>
 
 </div>
 
