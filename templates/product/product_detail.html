@@ -1,0 +1,19 @@
+<h2>{{ product.name }}</h2>
+
+<img src="{{ product.image.url }}" width="300">
+
+<p>{{ product.category.name }}</p>
+
+<p>{{ product.description }}</p>
+
+<p>Rs. {{ product.price }}</p>
+
+<p>Stock : {{ product.stock }}</p>
+
+{% if product.is_available %}
+<p>Available</p>
+{% else %}
+<p>Out of Stock</p>
+{% endif %}
+
+<button>Add to Cart</button>

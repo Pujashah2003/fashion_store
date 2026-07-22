@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store</title>
+
+    {% load static %}
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-black text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="flex justify-between items-center h-16">
+
+            <a href="/" class="text-2xl font-bold">
+                Fashion Store
+            </a>
+
+            <div class="flex items-center space-x-6">
+
+                <a href="/" class="hover:text-gray-300">
+                    Home
+                </a>
+
+                <a href="/products/" class="hover:text-gray-300">
+                    Category
+                </a>
+
+                <a href="/cart/" class="hover:text-gray-300">
+                    Cart
+                </a>
+
+                {% if user.is_authenticated %}
+
+                    <span class="text-gray-300">
+                        Hi, {{ user.first_name|default:user.username }}
+                    </span>
+
+                    <a href="{% url 'logout' %}"
+                       class="bg-red-500 px-4 py-2 rounded hover:bg-red-600">
+                        Logout
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'login' %}"
+                       class="hover:text-gray-300">
+                        Login
+                    </a>
+
+                    <a href="{% url 'register' %}"
+                       class="bg-white text-black px-4 py-2 rounded hover:bg-gray-200">
+                        Register
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-6 py-10">
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-black text-white py-5 mt-10">
+
+        <div class="text-center">
+
+            <p>© 2026 Fashion Store. All Rights Reserved.</p>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

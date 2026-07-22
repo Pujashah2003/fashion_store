@@ -1,0 +1,56 @@
+<!-- Navbar -->
+    <nav class="bg-black text-white shadow-md">
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="flex justify-between items-center h-16">
+
+            <a href="/" class="text-2xl font-bold">
+                Fashion Store
+            </a>
+
+            <div class="flex items-center space-x-6">
+
+                <a href="/" class="hover:text-gray-300">
+                    Home
+                </a>
+
+                <a href="/products/" class="hover:text-gray-300">
+                    Category
+                </a>
+
+                <a href="/cart/" class="hover:text-gray-300">
+                    Cart
+                </a>
+
+                {% if user.is_authenticated %}
+
+                    <span class="text-gray-300">
+                        Hi, {{ user.first_name|default:user.username }}
+                    </span>
+
+                    <a href="{% url 'logout' %}"
+                       class="bg-red-500 px-4 py-2 rounded hover:bg-red-600">
+                        Logout
+                    </a>
+
+                {% else %}
+
+                    <a href="{% url 'login' %}"
+                       class="hover:text-gray-300">
+                        Login
+                    </a>
+
+                    <a href="{% url 'register' %}"
+                       class="bg-white text-black px-4 py-2 rounded hover:bg-gray-200">
+                        Register
+                    </a>
+                    
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+</nav>
