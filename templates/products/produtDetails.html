@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FashionHub | Premium Product Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Poiret+One&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .active-thumb {
+            border-color: #000000;
+            opacity: 1;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #888;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#c8c6c5",
+                        "background": "#f8f9fb",
+                        "on-secondary-fixed": "#241a00",
+                        "tertiary-container": "#1b1d0e",
+                        "on-error-container": "#93000a",
+                        "primary": "#000000",
+                        "inverse-primary": "#c8c6c5",
+                        "secondary-fixed": "#ffe08e",
+                        "on-surface-variant": "#444748",
+                        "tertiary-fixed-dim": "#c8c8b0",
+                        "on-error": "#ffffff",
+                        "surface-container": "#edeef0",
+                        "secondary-fixed-dim": "#ecc246",
+                        "on-surface": "#191c1e",
+                        "surface-variant": "#e1e2e4",
+                        "inverse-surface": "#2e3132",
+                        "on-primary": "#ffffff",
+                        "surface-container-high": "#e7e8ea",
+                        "on-tertiary-fixed-variant": "#474836",
+                        "on-tertiary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "outline-variant": "#c4c7c7",
+                        "tertiary-fixed": "#e4e4cc",
+                        "secondary": "#755b00",
+                        "on-secondary-fixed-variant": "#584400",
+                        "surface-bright": "#f8f9fb",
+                        "primary-fixed": "#e5e2e1",
+                        "on-secondary": "#ffffff",
+                        "secondary-container": "#fed255",
+                        "surface-container-low": "#f3f4f6",
+                        "on-tertiary-container": "#848570",
+                        "surface-dim": "#d9dadc",
+                        "outline": "#747878",
+                        "surface": "#f8f9fb",
+                        "error-container": "#ffdad6",
+                        "on-secondary-container": "#735a00",
+                        "surface-tint": "#5f5e5e",
+                        "primary-container": "#1c1b1b",
+                        "on-primary-fixed": "#1c1b1b",
+                        "on-primary-fixed-variant": "#474646",
+                        "tertiary": "#000000",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#f0f1f3",
+                        "surface-container-highest": "#e1e2e4",
+                        "on-tertiary-fixed": "#1b1d0e",
+                        "on-primary-container": "#858383",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "base": "8px",
+                        "section-padding-mobile": "40px",
+                        "container-max": "1280px",
+                        "section-padding-desktop": "80px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-md": ["Poiret One"],
+                        "display-lg": ["Poiret One"],
+                        "headline-sm": ["Poiret One"],
+                        "label-caps": ["Inter"],
+                        "display-lg-mobile": ["Poiret One"],
+                        "body-sm": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "headline-sm": ["24px", {"lineHeight": "1.4", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.1em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["36px", {"lineHeight": "1.2", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-secondary-container">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-container/80 backdrop-blur-md border-b border-outline-variant/30 shadow-sm">
+<div class="flex justify-between items-center h-20 px-gutter max-w-container-max mx-auto">
+<a class="font-display-lg text-display-lg-mobile md:text-display-lg tracking-tighter text-primary dark:text-on-surface" href="#">FashionHub</a>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-on-surface transition-colors" href="#">Home</a>
+<a class="font-label-caps text-label-caps text-primary dark:text-on-surface border-b-2 border-primary dark:border-on-surface pb-1" href="#">Shop</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-on-surface transition-colors" href="#">Categories</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-on-surface transition-colors" href="#">New Arrivals</a>
+<a class="font-label-caps text-label-caps text-on-surface-variant dark:text-outline hover:text-primary dark:hover:text-on-surface transition-colors text-error" href="#">Sale</a>
+</nav>
+<div class="flex items-center space-x-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">favorite</button>
+<div class="relative">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">shopping_cart</button>
+<span class="absolute -top-2 -right-2 bg-primary text-on-primary text-[10px] w-4 h-4 flex items-center justify-center rounded-full">2</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-all">account_circle</button>
+</div>
+</div>
+</header>
+<main class="pt-32 pb-section-padding-desktop px-gutter max-w-container-max mx-auto">
+<!-- Product Hero Section -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Image Gallery (Left Column) -->
+<div class="lg:col-span-7 flex flex-col md:flex-row-reverse gap-4">
+<!-- Main Preview -->
+<div class="relative flex-1 aspect-[4/5] bg-surface-container overflow-hidden rounded-lg group">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A high-end editorial fashion photograph of a minimalist silk dress in charcoal black. The fabric has a soft sheen under professional studio lighting. The model is posed elegantly against a clean, off-white architectural background, emphasizing the fluid lines and premium texture of the garment in a luxury boutique style." id="main-image" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPRyFp0I6yGTkqJq83qv20Jy5g61nQxOul-qOcQov5cHrizvRnnPe3ttcSTZqwWcY-jtu-QWJOHEHUgEQ47y9LvVe57zabMulzRcf_gq9lzxXkWm3ypjz8i3znGPhbDEMiDThvTgalSEj8L_zxwbMYHp7-mSRgr2uXq4y0uugXjimP0H04_oI-z_oq0fOaDi6KUnHKaJok9-azIfXnxWRd5MDJ93i3QAztnma_eXvHaHOkU6yY0A8SKbFvG0Eamrn4INA0hhuxPc0-"/>
+<div class="absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 font-label-caps text-[10px] tracking-widest uppercase">New Season</div>
+</div>
+<!-- Thumbnails -->
+<div class="flex md:flex-col gap-4 overflow-x-auto md:overflow-y-auto custom-scrollbar md:w-24 shrink-0">
+<button class="thumb-btn border-2 active-thumb opacity-70 hover:opacity-100 transition-all aspect-square bg-surface-container rounded overflow-hidden" onclick="updateImage(0)">
+<img class="w-full h-full object-cover" data-alt="Close-up detail of premium charcoal silk fabric, showing the fine weave and subtle sheen under soft light. The aesthetic is clean and luxurious, focusing on textile quality." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfRsOhtiBKQcLy3woepTNrNnYNceca--3HPs3NxXSkPooIaKMvPVO1qUktfVfaMCFPKrWv1r5XeDHkRDkYYaXa4SKTGWEqItQrCUTsTmtSi_89Z_Buu35xRbgOpqUIHa-Jl3520N60OkGW8nnZKpoANCCluSjIOCW6U22zcBcUK0y-iidgxhh4-zO4sAIIddgOr6_GY3RClfyE7GM-PXy8DLMBs4ZPhcVchcB2HOWxDajXPxu-7TdavKz9iQU1Zw9J03FuO-PNaH5M"/>
+</button>
+<button class="thumb-btn border-2 border-transparent opacity-70 hover:opacity-100 transition-all aspect-square bg-surface-container rounded overflow-hidden" onclick="updateImage(1)">
+<img class="w-full h-full object-cover" data-alt="Back view of a minimalist charcoal silk dress, highlighting the clean silhouette and elegant tailoring. Professional studio photography with soft shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC41Y4hi0aUkJ7GQSIQfCNT5gOcxi5P94ykNYe2BNCJKbS6qgIa31ixtKdrRyqCQ3RCbLq1FlpRNXHpxWsoVfc2zfT4jSLBLfdhEXjnsyO1zEtTzKs44JWPICjT2fKMiAoL-wsTueMoyK9ZB2q32c9hxm0Y26bMsRBAT5GNxp46mv5gRy-LMQHSKVJS9_6GOltZ5x1V_nDllNoHD9xWS8k1Vs0TcyTMsngfHw6nXWlJ0a9GaPfvuTfAcV3340VCgLM7Hf1tUnHcj8vx"/>
+</button>
+<button class="thumb-btn border-2 border-transparent opacity-70 hover:opacity-100 transition-all aspect-square bg-surface-container rounded overflow-hidden" onclick="updateImage(2)">
+<img class="w-full h-full object-cover" data-alt="Lifestyle shot of a model wearing a minimalist charcoal silk dress in a modern, sunlit concrete loft. The mood is sophisticated and calm, with warm natural light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBI3R_rOGuXiXskAbKvuFQekUbB_f-Wtf6zvZVCSTOcupXUWTvtczSOjtIqzsN-UEPoNseAGVW2lPOW0NyVv8VtnFJXfI7VmgxG_x7YyLw1ZgRTIEgxEpbbzVfGZB4lWBedCUx7oxqhoeUqyYO-JqhmyiYFN2wDclXPvOvCfFVbYnZdq7nHOj60rFpfQJ5O15RnRr69uxMdbQ7CgqqBbynv72hH5m8Bz0PlfmkH51j61lpEEn2Nwl_I7quVYzHR4TdIDVyT5tgWFOC"/>
+</button>
+<button class="thumb-btn border-2 border-transparent opacity-70 hover:opacity-100 transition-all aspect-square bg-surface-container rounded overflow-hidden" onclick="updateImage(3)">
+<img class="w-full h-full object-cover" data-alt="Macro shot of the hemline and stitching of a premium garment, emphasizing the craftsmanship and attention to detail. Soft, high-key lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5Bsm7DP9d_kpLdTuR7ROM8BW1Cbm30tbWspwB2nlbQtwcpuWYIiXhzuYXQT0Y_tnfRO7AKkqSg5Hp0glv0dUvGYPZjuo7QunyQnEKhVvLddSck1tmC5plVvMj17QiMA2QqmXCxfgirhLC9ZG4tpW-fPRql7Z9fqQRn0T-oxhWwCZO6v5v29dLDCBTRIg4r4FmCt5a1occ1DiIjEdyohTVFYA3r3fQpnfmauT-NMeAVr0eu0lbf1Q_GoC7TOqtrLyiTfoItOUfbVnK"/>
+</button>
+</div>
+</div>
+<!-- Product Details (Right Column) -->
+<div class="lg:col-span-5 flex flex-col space-y-8">
+<div>
+<h1 class="font-display-lg text-display-lg-mobile md:text-headline-md text-on-surface mb-2">Sculpted Silk Slip Dress</h1>
+<div class="flex items-center space-x-4 mb-4">
+<div class="flex text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm">star_half</span>
+</div>
+<span class="font-label-caps text-label-caps text-on-surface-variant">(128 Reviews)</span>
+</div>
+<div class="flex items-baseline space-x-3">
+<span class="font-headline-sm text-headline-sm text-primary">$295.00</span>
+<span class="font-body-md text-body-md text-outline line-through">$450.00</span>
+<span class="text-error font-label-caps text-label-caps">Save 35%</span>
+</div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+                    A masterclass in modern minimalism. This bias-cut slip dress is crafted from heavy-weight sand-washed silk for a fluid, liquid-like drape that contours the body beautifully.
+                </p>
+<!-- Selectors -->
+<div class="space-y-6 pt-4 border-t border-outline-variant/30">
+<!-- Color -->
+<div>
+<span class="font-label-caps text-label-caps block mb-3 uppercase tracking-widest">Color: Charcoal</span>
+<div class="flex space-x-3">
+<button class="w-8 h-8 rounded-full bg-[#111111] ring-2 ring-offset-2 ring-primary"></button>
+<button class="w-8 h-8 rounded-full bg-[#F5F5DC] ring-2 ring-offset-2 ring-transparent hover:ring-outline transition-all"></button>
+<button class="w-8 h-8 rounded-full bg-[#3D4035] ring-2 ring-offset-2 ring-transparent hover:ring-outline transition-all"></button>
+</div>
+</div>
+<!-- Size -->
+<div>
+<div class="flex justify-between items-center mb-3">
+<span class="font-label-caps text-label-caps uppercase tracking-widest">Size</span>
+<button class="font-label-caps text-[10px] text-outline hover:text-primary transition-colors underline">Size Guide</button>
+</div>
+<div class="grid grid-cols-5 gap-2">
+<button class="py-3 border border-outline-variant hover:border-primary font-label-caps text-label-caps transition-all">XS</button>
+<button class="py-3 border border-primary bg-primary text-on-primary font-label-caps text-label-caps transition-all">S</button>
+<button class="py-3 border border-outline-variant hover:border-primary font-label-caps text-label-caps transition-all">M</button>
+<button class="py-3 border border-outline-variant hover:border-primary font-label-caps text-label-caps transition-all">L</button>
+<button class="py-3 border border-outline-variant hover:border-primary font-label-caps text-label-caps transition-all opacity-40 cursor-not-allowed">XL</button>
+</div>
+</div>
+<!-- Quantity -->
+<div>
+<span class="font-label-caps text-label-caps block mb-3 uppercase tracking-widest">Quantity</span>
+<div class="inline-flex items-center border border-outline-variant">
+<button class="px-4 py-2 hover:bg-surface-container transition-colors">-</button>
+<span class="px-6 py-2 border-x border-outline-variant font-body-md">1</span>
+<button class="px-4 py-2 hover:bg-surface-container transition-colors">+</button>
+</div>
+</div>
+</div>
+<!-- Actions -->
+<div class="flex flex-col space-y-3 pt-4">
+<div class="flex space-x-3">
+<button class="flex-1 bg-primary text-on-primary py-4 font-label-caps text-label-caps tracking-widest uppercase hover:opacity-90 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg">shopping_bag</span>
+                            Add to Cart
+                        </button>
+<button class="px-5 border border-outline-variant hover:bg-surface-container transition-all flex items-center justify-center group">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">favorite</span>
+</button>
+</div>
+<button class="w-full border border-primary py-4 font-label-caps text-label-caps tracking-widest uppercase hover:bg-primary hover:text-on-primary transition-all">
+                        Buy it Now
+                    </button>
+</div>
+<!-- Features/Badges -->
+<div class="grid grid-cols-2 gap-4 py-6 border-t border-outline-variant/30">
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-outline">local_shipping</span>
+<span class="font-label-caps text-[10px]">Free Express Shipping</span>
+</div>
+<div class="flex items-center space-x-3">
+<span class="material-symbols-outlined text-outline">verified</span>
+<span class="font-label-caps text-[10px]">2 Year Warranty</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Tabs Section (Specs & Reviews) -->
+<section class="mt-section-padding-desktop">
+<div class="border-b border-outline-variant/30 flex space-x-12 mb-12">
+<button class="pb-4 border-b-2 border-primary font-label-caps text-label-caps tracking-widest uppercase">Specifications</button>
+<button class="pb-4 border-b-2 border-transparent text-outline hover:text-primary transition-colors font-label-caps text-label-caps tracking-widest uppercase">Reviews (128)</button>
+<button class="pb-4 border-b-2 border-transparent text-outline hover:text-primary transition-colors font-label-caps text-label-caps tracking-widest uppercase">Sustainability</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-6">Material &amp; Care</h3>
+<ul class="space-y-4 font-body-md text-on-surface-variant">
+<li class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span>Material</span>
+<span class="text-on-surface font-semibold">100% Sand-washed Silk</span>
+</li>
+<li class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span>Weight</span>
+<span class="text-on-surface font-semibold">22 momme</span>
+</li>
+<li class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span>Care</span>
+<span class="text-on-surface font-semibold">Dry Clean Only</span>
+</li>
+<li class="flex justify-between border-b border-outline-variant/10 pb-2">
+<span>Origin</span>
+<span class="text-on-surface font-semibold">Made in Italy</span>
+</li>
+</ul>
+</div>
+<div>
+<h3 class="font-headline-sm text-headline-sm mb-6">Customer Reviews</h3>
+<div class="space-y-8">
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<span class="font-body-md font-bold text-primary">Elena R.</span>
+<span class="font-label-caps text-[10px] text-outline">Oct 24, 2023</span>
+</div>
+<div class="flex text-secondary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-sm text-on-surface-variant">Absolutely stunning. The silk feels substantial and the fit is perfection. True to size.</p>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<span class="font-body-md font-bold text-primary">Marcus V.</span>
+<span class="font-label-caps text-[10px] text-outline">Sep 12, 2023</span>
+</div>
+<div class="flex text-secondary">
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-xs" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-sm text-on-surface-variant">Bought this for my wife. The packaging was top-notch and the quality is even better in person.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Related Products Section -->
+<section class="mt-section-padding-desktop">
+<div class="flex justify-between items-end mb-12">
+<div>
+<span class="font-label-caps text-label-caps text-outline uppercase tracking-[0.2em] block mb-2">Curated for you</span>
+<h2 class="font-headline-md text-headline-md">Complete the Look</h2>
+</div>
+<a class="font-label-caps text-label-caps text-primary border-b border-primary pb-1 hover:opacity-70 transition-opacity" href="#">View All Items</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+<!-- Product Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] bg-surface-container mb-4 overflow-hidden rounded">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A pair of minimalist black strappy leather heels displayed in a high-fashion editorial setting. Soft shadows and clean lighting emphasize the premium leather texture and sleek design. Luxury footwear aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMWhdryd-s1_CblHDx1LpwIqQk0ynevE9hCSWMJEH02QlMeLZZtGCTVefMp9RBKN8KLBHti4hmQEDY8NurVrsetjNcElfROkt8BiNIcR3BTvqFlNfcrKU1Aiq-i97Jejs-Nl78Rito5UhpM8tP-AW2TtJqzziiS93ug080xmngD6x7ty4r60q4F4W1YpwkzmGg4a9-w5a5vCuFoMWZ-uTlpdc4_kXSowMcG-gNv1wZTqSdxiv5sU4ZrtFu7EU-1WmtLorMCVBJQ57S"/>
+<button class="absolute top-4 right-4 bg-white/80 backdrop-blur rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<h4 class="font-body-md font-semibold text-on-surface mb-1">Minimalist Strap Heel</h4>
+<span class="font-label-caps text-outline">$185.00</span>
+</div>
+<!-- Product Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] bg-surface-container mb-4 overflow-hidden rounded">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="An elegant gold link chain necklace with a small geometric pendant, photographed against a minimalist stone background. Warm, golden hour lighting highlighting the jewelry's luxury finish." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHMgNEeo4hlLLlcVCfDdWZ7_mp4uPQ37wYkkSb7iv_scJH3gK4v2wNUcxXfEFw0Rz69-lEoxkIRrEPo3EZZVgJmxy5wp0C2olpuXL7fnlFyFrERMHvL9I3nkYdAq600JUBjEkvFD7uxZ1Rs_AeX9Glzb7g7TW7RlGVThnStExZzy1p4_zVp3ysK3aakEWTL1wYXYvoYXn9O0_yLz1Bh7wGJwssW5gavmHsyRwzq-Wh0drVUfFQFiRZsa5IkJaMFRSXtFAnXFXHIFrf"/>
+<button class="absolute top-4 right-4 bg-white/80 backdrop-blur rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<h4 class="font-body-md font-semibold text-on-surface mb-1">Horizon Link Necklace</h4>
+<span class="font-label-caps text-outline">$120.00</span>
+</div>
+<!-- Product Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] bg-surface-container mb-4 overflow-hidden rounded">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A structured black leather clutch with clean architectural lines, held by a model wearing a neutral outfit. High-contrast studio lighting creating sharp, elegant shadows. Premium accessories vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDblTfcdp6Taa8qo6W1xyJIA0yukNZ8Z3THOPqSX46dDaQApEDrAIZ3R_baLaPRgjDDjFzz1kn9bc1tr8q9hEa115S1pDWWRtlWqHxtA-trtPnZ3iV_lM-o7RBC_o8QIdK-EbUwXeIuagbxZ9IJD85amiY7jeRGKdkPJ5OlnEScoQPG-WFnV5KNwe2QnU4OAIxMu1elml3aU_pUZPvrhT2f3Vi-LD4e4WceZwepkBqCLiiUMf9gSIPht8eWqHskSZRzoX1LCy9WDyS8"/>
+<button class="absolute top-4 right-4 bg-white/80 backdrop-blur rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<h4 class="font-body-md font-semibold text-on-surface mb-1">Architectural Clutch</h4>
+<span class="font-label-caps text-outline">$310.00</span>
+</div>
+<!-- Product Card 4 -->
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] bg-surface-container mb-4 overflow-hidden rounded">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="A sheer oversized silk blazer in a soft taupe color, draped over a minimalist chair in a bright, modern studio. The soft fabric and clean tailoring are highlighted by diffused daylight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcEDmUtXdhnJgC-kLT2JtrXkMEYK8oWYp--dsSbcmNNzamTlpqFUtWm33uKvEiaXLuYxhBOtYZctMMu-u2laSSEqr-2iBWw2pFO0wT5hpWSRMzYVEEk5d_ouWFKEsNl-aFb-GM-bQqa3JNtTRqDA_33vqxXgx9jxgmc_SE7tqnwwC1Zt9-CWnFYpxToFSe02wtrN3raNx4z2dmasJ-q3GKJi9_d8qkNkh9qFTdnyN6FZYmjKiDCXggAI9219mejPV4MEesJU0v0JB2"/>
+<button class="absolute top-4 right-4 bg-white/80 backdrop-blur rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-sm">favorite</span>
+</button>
+</div>
+<h4 class="font-body-md font-semibold text-on-surface mb-1">Soft Tailored Blazer</h4>
+<span class="font-label-caps text-outline">$425.00</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest dark:bg-surface-container-highest border-t border-outline-variant w-full py-section-padding-mobile md:py-section-padding-desktop">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-gutter max-w-container-max mx-auto">
+<div class="flex flex-col space-y-6">
+<a class="font-headline-sm text-headline-sm text-primary dark:text-on-surface" href="#">FashionHub</a>
+<p class="font-body-sm text-body-sm text-on-surface-variant max-w-xs leading-relaxed">
+                    Elevating the everyday through a curated collection of minimalist essentials and high-end fashion staples.
+                </p>
+<div class="flex space-x-4">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">public</button>
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">share</button>
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">alternate_email</button>
+</div>
+</div>
+<div class="flex flex-col space-y-4">
+<h5 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">About</h5>
+<nav class="flex flex-col space-y-2">
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline hover:text-primary hover:translate-x-1 transition-all duration-200" href="#">Our Story</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline hover:text-primary hover:translate-x-1 transition-all duration-200" href="#">Sustainability</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline hover:text-primary hover:translate-x-1 transition-all duration-200" href="#">Craftsmanship</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline hover:text-primary hover:translate-x-1 transition-all duration-200" href="#">Journal</a>
+</nav>
+</div>
+<div class="flex flex-col space-y-4">
+<h5 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Customer Service</h5>
+<nav class="flex flex-col space-y-2">
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline hover:text-primary hover:translate-x-1 transition-all duration-200" href="#">Shipping Info</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline hover:text-primary hover:translate-x-1 transition-all duration-200" href="#">Returns &amp; Exchanges</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline hover:text-primary hover:translate-x-1 transition-all duration-200" href="#">Track Order</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant dark:text-outline hover:text-primary hover:translate-x-1 transition-all duration-200" href="#">Contact Us</a>
+</nav>
+</div>
+<div class="flex flex-col space-y-4">
+<h5 class="font-label-caps text-label-caps text-primary uppercase tracking-widest">Newsletter</h5>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Subscribe to receive updates on new collections and exclusive offers.</p>
+<div class="flex border-b border-outline-variant focus-within:border-primary transition-all">
+<input class="bg-transparent border-none focus:ring-0 w-full py-2 font-body-sm" placeholder="Your Email" type="email"/>
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors">east</button>
+</div>
+</div>
+</div>
+<div class="max-w-container-max mx-auto px-gutter mt-16 pt-8 border-t border-outline-variant/30 flex flex-col md:flex-row justify-between items-center text-[10px] uppercase tracking-widest text-outline">
+<span>© 2024 FashionHub. All rights reserved.</span>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Use</a>
+<a class="hover:text-primary transition-colors" href="#">Accessibility</a>
+</div>
+</div>
+</footer>
+<script>
+        function updateImage(index) {
+            const mainImg = document.getElementById('main-image');
+            const thumbs = document.querySelectorAll('.thumb-btn');
+            const targetThumb = thumbs[index].querySelector('img');
+            
+            // Fade effect
+            mainImg.style.opacity = '0';
+            
+            setTimeout(() => {
+                mainImg.src = targetThumb.src;
+                mainImg.dataset.alt = targetThumb.dataset.alt;
+                mainImg.style.opacity = '1';
+                
+                thumbs.forEach(btn => btn.classList.remove('active-thumb', 'border-primary'));
+                thumbs[index].classList.add('active-thumb', 'border-primary');
+            }, 200);
+        }
+
+        // Mini interaction for quantity
+        document.querySelectorAll('button').forEach(btn => {
+            if(btn.innerText === '+' || btn.innerText === '-') {
+                btn.addEventListener('click', function() {
+                    const span = this.parentElement.querySelector('span');
+                    let val = parseInt(span.innerText);
+                    if(this.innerText === '+') val++;
+                    else if(val > 1) val--;
+                    span.innerText = val;
+                });
+            }
+        });
+    </script>
+</body></html>

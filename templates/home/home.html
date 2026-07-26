@@ -1,13 +1,154 @@
-{% extends "base.html" %}
-
-{% block title %}
-Home
-{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-<h1>Welcome to Fashion Store</h1>
+<!-- Hero Section -->
+<section class="hero-section">
 
-<p>Discover the latest fashion collections.</p>
+    <div class="hero-content">
+
+        <h1>Discover Your Style</h1>
+
+        <p>New fashion collection for every occasion</p>
+
+        <a href="#" class="shop-btn">
+            Shop Now
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- Popular Categories -->
+<section class="container mt-5">
+
+    <h2 class="section-title">
+        Popular Categories
+    </h2>
+
+    <div class="category-grid">
+
+        <div class="category-card">
+            <div class="category-image men-image"></div>
+            <h3>Men</h3>
+            <a href="/categories/men/">
+                Shop Now
+            </a>
+        </div>
+
+
+        <div class="category-card">
+            <div class="category-image women-image"></div>
+            <h3>Women</h3>
+            <a href="/categories/women/">
+                Shop Now
+            </a>
+        </div>
+
+
+        <div class="category-card">
+            <div class="category-image kids-image"></div>
+            <h3>Kids</h3>
+            <a href="/categories/kids/">
+                Shop Now
+            </a>
+        </div>
+
+
+        <div class="category-card">
+            <div class="category-image shoes-image"></div>
+            <h3>Shoes</h3>
+            <a href="/categories/shoes/">
+                Shop Now
+            </a>
+        </div>
+
+
+        <div class="category-card">
+            <div class="category-image bags-image"></div>
+            <h3>Bags</h3>
+            <a href="/categories/bags/">
+                Shop Now
+            </a>
+        </div>
+
+
+        <div class="category-card">
+            <div class="category-image accessories-image"></div>
+            <h3>Accessories</h3>
+            <a href="/categories/accessories/">
+                Shop Now
+            </a>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Featured Products -->
+<section class="container mt-5">
+
+    <h2 class="section-title">
+        Featured Products
+    </h2>
+
+    <div class="product-grid">
+
+        <div class="product-card">
+            <div class="product-image"></div>
+
+            <h3>Casual Shirt</h3>
+
+            <p>Rs. 1,500</p>
+
+            <button>
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product-card">
+            <div class="product-image"></div>
+
+            <h3>Fashion Hoodie</h3>
+
+            <p>Rs. 2,500</p>
+
+            <button>
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product-card">
+            <div class="product-image"></div>
+
+            <h3>Running Shoes</h3>
+
+            <p>Rs. 4,000</p>
+
+            <button>
+                Add to Cart
+            </button>
+        </div>
+
+
+        <div class="product-card">
+            <div class="product-image"></div>
+
+            <h3>Leather Bag</h3>
+
+            <p>Rs. 3,000</p>
+
+            <button>
+                Add to Cart
+            </button>
+        </div>
+
+    </div>
+
+</section>
 
 {% endblock %}

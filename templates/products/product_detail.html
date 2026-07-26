@@ -1,0 +1,406 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{{ product.name }} | Fashion Store</title>
+
+
+    <!-- Tailwind CSS -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet"
+          href="{% static 'css/style.css' %}">
+
+</head>
+
+
+<body class="bg-[#f8f6f1] text-gray-900">
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="bg-[#f8f6f1] border-b border-gray-300">
+
+        <div class="max-w-7xl mx-auto px-6 py-5">
+
+            <div class="flex items-center justify-between">
+
+
+                <!-- BRAND -->
+
+                <a href="/"
+                   class="text-2xl font-bold tracking-[4px]">
+
+                    ELVYRA
+
+                </a>
+
+
+                <!-- NAVIGATION -->
+
+                <div class="hidden md:flex gap-8">
+
+                    <a href="/"
+                       class="text-sm hover:text-[#9b5b3e]">
+
+                        Home
+
+                    </a>
+
+
+                    <a href="/products/"
+                       class="text-sm hover:text-[#9b5b3e]">
+
+                        Products
+
+                    </a>
+
+
+                    <a href="#"
+                       class="text-sm hover:text-[#9b5b3e]">
+
+                        Women
+
+                    </a>
+
+
+                    <a href="#"
+                       class="text-sm hover:text-[#9b5b3e]">
+
+                        Men
+
+                    </a>
+
+
+                    <a href="#"
+                       class="text-sm hover:text-[#9b5b3e]">
+
+                        Accessories
+
+                    </a>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="flex gap-5">
+
+                    <a href="#"
+                       class="text-2xl">
+
+                        ⌕
+
+                    </a>
+
+
+                    <a href="#"
+                       class="text-2xl">
+
+                        ♡
+
+                    </a>
+
+
+                    <a href="#"
+                       class="text-2xl">
+
+                        🛍
+
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- ================= PRODUCT DETAIL ================= -->
+
+    <main class="max-w-7xl mx-auto px-6 py-16">
+
+
+        <!-- BACK BUTTON -->
+
+        <a href="/products/"
+           class="text-sm underline
+                  underline-offset-4
+                  hover:text-[#9b5b3e]">
+
+            ← Back to Products
+
+        </a>
+
+
+        <!-- PRODUCT CONTENT -->
+
+        <div class="grid grid-cols-1
+                    md:grid-cols-2
+                    gap-12
+                    mt-10">
+
+
+            <!-- PRODUCT IMAGE -->
+
+            <div class="bg-white">
+
+
+                {% if product.image %}
+
+                <img src="{{ product.image.url }}"
+                     alt="{{ product.name }}"
+                     class="w-full
+                            h-[600px]
+                            object-cover">
+
+                {% else %}
+
+                <img src="{% static 'images/default.jpg' %}"
+                     alt="No Image"
+                     class="w-full
+                            h-[600px]
+                            object-cover">
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- PRODUCT INFORMATION -->
+
+            <div class="flex flex-col
+                        justify-center">
+
+
+                <!-- CATEGORY -->
+
+                <p class="text-sm
+                          uppercase
+                          tracking-[3px]
+                          text-[#9b5b3e]">
+
+                    {{ product.category.name }}
+
+                </p>
+
+
+                <!-- PRODUCT NAME -->
+
+                <h1 class="text-4xl
+                           md:text-5xl
+                           font-light
+                           mt-4">
+
+                    {{ product.name }}
+
+                </h1>
+
+
+                <!-- PRICE -->
+
+                <p class="text-2xl
+                          font-semibold
+                          mt-6">
+
+                    Rs. {{ product.price }}
+
+                </p>
+
+
+                <!-- DESCRIPTION -->
+
+                <p class="text-gray-600
+                          leading-7
+                          mt-6">
+
+                    {{ product.description }}
+
+                </p>
+
+
+                <!-- STOCK -->
+
+                {% if product.stock > 0 %}
+
+                <p class="text-green-600
+                          text-sm
+                          mt-6">
+
+                    ✓ In Stock
+
+                </p>
+
+                {% else %}
+
+                <p class="text-red-600
+                          text-sm
+                          mt-6">
+
+                    ✕ Out of Stock
+
+                </p>
+
+                {% endif %}
+
+
+                <!-- ADD TO CART -->
+
+                {% if product.stock > 0 %}
+
+                <a href="{% url 'cart:add_to_cart' product.id %}"
+                   class="mt-8
+                          w-full
+                          bg-black
+                          text-white
+                          text-center
+                          py-4
+                          uppercase
+                          tracking-[2px]
+                          text-sm
+                          hover:bg-[#9b5b3e]
+                          transition">
+
+                    Add To Cart
+
+                </a>
+
+                {% else %}
+
+                <button disabled
+                        class="mt-8
+                               w-full
+                               bg-gray-400
+                               text-white
+                               py-4
+                               uppercase
+                               tracking-[2px]
+                               text-sm
+                               cursor-not-allowed">
+
+                    Out of Stock
+
+                </button>
+
+                {% endif %}
+
+
+                <!-- EXTRA INFORMATION -->
+
+                <div class="border-t
+                            border-gray-300
+                            mt-10
+                            pt-6">
+
+
+                    <div class="flex
+                                justify-between
+                                py-3
+                                border-b
+                                border-gray-200">
+
+                        <span>
+                            Category
+                        </span>
+
+                        <span class="text-gray-500">
+
+                            {{ product.category.name }}
+
+                        </span>
+
+                    </div>
+
+
+                    <div class="flex
+                                justify-between
+                                py-3
+                                border-b
+                                border-gray-200">
+
+                        <span>
+                            Availability
+                        </span>
+
+                        <span class="text-gray-500">
+
+                            {% if product.stock > 0 %}
+                                Available
+                            {% else %}
+                                Out of Stock
+                            {% endif %}
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="bg-black text-white">
+
+        <div class="max-w-7xl
+                    mx-auto
+                    px-6
+                    py-10
+                    text-center">
+
+            <h2 class="tracking-[3px]
+                       font-bold">
+
+                ELVYRA
+
+            </h2>
+
+
+            <p class="text-gray-400
+                      text-sm
+                      mt-3">
+
+                Wear your story.
+
+            </p>
+
+
+            <p class="text-gray-500
+                      text-xs
+                      mt-6">
+
+                © 2026 Fashion Store.
+                All Rights Reserved.
+
+            </p>
+
+        </div>
+
+    </footer>
+
+
+</body>
+
+</html>

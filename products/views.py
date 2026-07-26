@@ -1,30 +1,37 @@
 from django.shortcuts import render, get_object_or_404
-
-from products.models import Product
+from .models import Product
 
 
 def product_list(request):
 
-    products = Product.objects.all()
+    products = Product.objects.filter(
+        is_available=True
+    )
 
     return render(
         request,
-        "products/product_list.html",
+        'products/product_list.html',
         {
-            "products": products
+            'products': products
         }
     )
-def product_detail(request, slug):
+
+
+def product_detail(request, id):
 
     product = get_object_or_404(
         Product,
-        slug=slug
+        id=id
     )
 
     return render(
         request,
-        "products/product_detail.html",
+        'products/product_detail.html',
         {
-            "product": product
+            'product': product
         }
     )
+
+def products(request):
+    products = Product.objects.all()
+    return render(request, 'products/produtDetails.html', {'products': products})

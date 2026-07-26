@@ -1,16 +1,14 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 
 {% block content %}
 
-<div class="container mt-5" style="max-width:500px;">
+<div class="container mt-5">
 
-   
+    <h2>Login</h2>
 
     {% if messages %}
         {% for message in messages %}
-            <div class="alert alert-danger">
-                {{ message }}
-            </div>
+            <p>{{ message }}</p>
         {% endfor %}
     {% endif %}
 
@@ -19,28 +17,43 @@
         {% csrf_token %}
 
         <div class="mb-3">
+
             <label>Username</label>
+
             <input
                 type="text"
                 name="username"
                 class="form-control"
-                required>
+                required
+            >
+
         </div>
 
         <div class="mb-3">
+
             <label>Password</label>
+
             <input
                 type="password"
                 name="password"
                 class="form-control"
-                required>
+                required
+            >
+
         </div>
 
-        <button class="btn btn-dark w-100">
+        <button type="submit" class="btn btn-dark">
             Login
         </button>
 
     </form>
+
+    <p class="mt-3">
+        Don't have an account?
+        <a href="{% url 'register' %}">
+            Register
+        </a>
+    </p>
 
 </div>
 
