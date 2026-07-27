@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout - Cash on Delivery | Fashion Store{% endblock %}
+
+{% block content %}
+
+<div class="max-w-7xl mx-auto px-6 py-12">
+
+    <div class="border-b border-gray-300 pb-4 mb-8">
+        <h1 class="text-3xl font-light text-gray-900 tracking-tight">Checkout</h1>
+        <p class="text-sm text-gray-500 mt-1">Please enter your shipping address to complete your order via Cash on Delivery</p>
+    </div>
+
+    <form action="{% url 'orders:checkout' %}" method="POST" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {% csrf_token %}
+
+        <!-- SHIPPING FORM -->
+        <div class="lg:col-span-2 space-y-6">
+
+            <!-- CUSTOMER DETAILS -->
+            <div class="bg-white border border-gray-200 p-6 space-y-4">
+                <h2 class="text-lg font-medium border-b border-gray-200 pb-3">Customer Information</h2>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Full Name *</label>
+                        <input type="text" name="full_name" value="{{ user.get_full_name|default:user.username }}" required class="w-full border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:border-black">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Email Address *</label>
+                        <input type="email" name="email" value="{{ user.email }}" required class="w-full border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:border-black">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Phone Number *</label>
+                    <input type="tel" name="phone" placeholder="e.g. +977-9800000000" required class="w-full border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:border-black">
+                </div>
+            </div>
+
+            <!-- SHIPPING ADDRESS -->
+            <div class="bg-white border border-gray-200 p-6 space-y-4">
+                <h2 class="text-lg font-medium border-b border-gray-200 pb-3">Shipping Address</h2>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Street Address *</label>
+                    <input type="text" name="address_line1" placeholder="House / Building No, Street" required class="w-full border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:border-black">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Address Line 2 (Landmark)</label>
+                    <input type="text" name="address_line2" placeholder="Near landmark or area" class="w-full border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:border-black">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">City *</label>
+                        <input type="text" name="city" placeholder="Kathmandu" required class="w-full border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:border-black">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">State / Province *</label>
+                        <input type="text" name="state" placeholder="Bagmati" required class="w-full border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:border-black">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-gray-700 mb-1">Postal Code *</label>
+                        <input type="text" name="postal_code" placeholder="44600" required class="w-full border border-gray-300 px-4 py-2.5 text-sm focus:outline-none focus:border-black">
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAYMENT METHOD -->
+            <div class="bg-white border border-gray-200 p-6 space-y-3">
+                <h2 class="text-lg font-medium border-b border-gray-200 pb-3">Payment Method</h2>
+                <div class="p-4 bg-gray-50 border border-gray-300 flex items-center gap-3">
+                    <input type="radio" name="payment_method" value="COD" checked id="cod_input" class="accent-black">
+                    <label for="cod_input" class="text-sm font-medium cursor-pointer">
+                        💵 Cash on Delivery (Pay Cash to Courier Agent Upon Arrival)
+                    </label>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SUMMARY -->
+        <div class="bg-white border border-gray-200 p-6 h-fit space-y-6">
+            <h2 class="text-lg font-medium border-b border-gray-200 pb-3">Order Summary</h2>
+
+            <div class="space-y-3 max-h-60 overflow-y-auto text-sm divide-y divide-gray-100">
+                {% for item in cart_items %}
+                    <div class="flex justify-between pt-2">
+                        <span>{{ item.quantity }}x {{ item.product.name }}</span>
+                        <span class="font-medium">Rs. {{ item.subtotal }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="border-t border-gray-300 pt-4 space-y-2 text-sm">
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Subtotal:</span>
+                    <span class="font-medium">Rs. {{ total_amount }}</span>
+                </div>
+
+                <div class="flex justify-between">
+                    <span class="text-gray-600">Shipping Fee:</span>
+                    <span class="font-medium">{% if shipping_fee == 0 %}FREE{% else %}Rs. {{ shipping_fee }}{% endif %}</span>
+                </div>
+
+                <div class="flex justify-between text-base font-bold border-t border-gray-200 pt-3">
+                    <span>Grand Total:</span>
+                    <span>Rs. {{ grand_total }}</span>
+                </div>
+            </div>
+
+            <button type="submit" class="w-full bg-black text-white text-center py-3.5 uppercase tracking-widest text-sm font-medium hover:bg-[#9b5b3e] transition">
+                Place Order (Cash on Delivery)
+            </button>
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
