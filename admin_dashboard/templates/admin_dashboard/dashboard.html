@@ -1,0 +1,92 @@
+{% extends 'admin_dashboard/base.html' %}
+
+{% block content %}
+
+<div class="dashboard-cards">
+
+    <div class="card">
+        <div class="icon">📦</div>
+        <div class="info">
+            <h2>{{ product_count }}</h2>
+            <p>Products</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="icon">🛒</div>
+        <div class="info">
+            <h2>{{ order_count }}</h2>
+            <p>Orders</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="icon">📂</div>
+        <div class="info">
+            <h2>{{ category_count }}</h2>
+            <p>Categories</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="icon">👥</div>
+        <div class="info">
+            <h2>{{ user_count }}</h2>
+            <p>Customers</p>
+        </div>
+    </div>
+
+</div>
+<div class="table-card">
+
+    <div class="table-header">
+        <h2>Latest Orders</h2>
+    </div>
+
+    <table class="dashboard-table">
+
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Customer</th>
+                <th>Total</th>
+                <th>Status</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+        {% for order in latest_orders %}
+
+        <tr>
+            <td>#{{ order.id }}</td>
+            <td>{{ order.user.username }}</td>
+            <td>Rs. {{ order.total_price }}</td>
+            <td>
+                <span class="status {{ order.status|lower }}">
+                    {{ order.status }}
+                </span>
+            </td>
+        </tr>
+
+        {% empty %}
+
+        <tr>
+            <td colspan="4">
+                No orders found.
+            </td>
+        </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+{% endblock %}

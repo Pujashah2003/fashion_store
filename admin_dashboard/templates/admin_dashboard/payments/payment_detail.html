@@ -1,0 +1,39 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+<div class="card-header">
+
+<h3>Payment Details</h3>
+
+</div>
+
+<div class="card-body">
+
+<p><strong>Order:</strong> {{ payment.order_number }}</p>
+
+<p><strong>Customer:</strong> {{ payment.full_name }}</p>
+
+<p><strong>Amount:</strong> Rs. {{ payment.grand_total }}</p>
+
+<p><strong>Method:</strong> {{ payment.payment_method }}</p>
+
+<p><strong>Status:</strong> {{ payment.payment_status }}</p>
+
+<p><strong>Date:</strong> {{ payment.created_at }}</p>
+
+<a
+href="{% url 'admin_dashboard:payment_list' %}"
+class="btn btn-secondary">
+
+Back
+
+</a>
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -50,7 +50,7 @@ def user_login(request):
 
             login(request, user)
 
-            return redirect("home")
+            return redirect("home:home")
 
         else:
 
@@ -64,6 +64,6 @@ def user_logout(request):
 
     messages.success(request, "You have been logged out.")
 
-    return redirect("home")
+    return redirect("home:home")
 def account(request):
     return render(request, "accounts/login.html")

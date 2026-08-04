@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout | Fashion Store</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f8f8;
+        }
+
+        .checkout-container {
+            width: 90%;
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        input,
+        textarea,
+        select {
+
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+
+        }
+
+
+        .cart-summary {
+
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+
+        }
+
+
+        .product-item {
+
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+
+        }
+
+
+        .total {
+
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+
+        }
+
+
+        button {
+
+            background: black;
+            color: white;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+
+        }
+
+
+        button:hover {
+
+            opacity: 0.8;
+
+        }
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="checkout-container">
+
+
+<h2>
+    Checkout
+</h2>
+
+
+
+<form method="POST">
+
+{% csrf_token %}
+
+
+
+<div class="form-group">
+
+<label>
+Full Name
+</label>
+
+<input 
+type="text"
+name="full_name"
+placeholder="Enter your name"
+required>
+
+</div>
+
+
+
+
+<div class="form-group">
+
+<label>
+Phone Number
+</label>
+
+<input 
+type="text"
+name="phone"
+placeholder="98XXXXXXXX"
+required>
+
+</div>
+
+
+
+
+
+<div class="form-group">
+
+<label>
+Address
+</label>
+
+<textarea
+name="address"
+rows="4"
+placeholder="Delivery address"
+required></textarea>
+
+</div>
+
+
+
+
+
+<div class="form-group">
+
+<label>
+Payment Method
+</label>
+
+
+<select name="payment_method">
+
+    <option value="COD">
+    Cash on Delivery
+    </option>
+
+
+    <option value="ESEWA">
+    eSewa
+    </option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+
+<div class="cart-summary">
+
+
+<h3>
+Order Summary
+</h3>
+
+
+
+{% for item in cart_items %}
+
+
+<div class="product-item">
+
+
+<span>
+{{ item.product.name }}
+x {{ item.quantity }}
+</span>
+
+
+<span>
+Rs. {{ item.total_price }}
+</span>
+
+
+</div>
+
+
+{% endfor %}
+
+
+
+
+
+<div class="total">
+
+Total:
+Rs. {{ grand_total }}
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<br>
+
+
+<button type="submit">
+
+Place Order
+
+</button>
+
+
+</form>
+
+
+</div>
+
+
+
+</body>
+
+</html>

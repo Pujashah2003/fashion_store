@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'payments',
     'products',
     'categories',
+    'admin_dashboard',
 ]
 
 MIDDLEWARE = [

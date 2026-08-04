@@ -1,0 +1,40 @@
+{% extends "admin_dashboard/base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-body text-center">
+
+        <h3 class="mb-4">
+            Delete Category
+        </h3>
+
+        <p>
+
+            Are you sure you want to delete
+
+            <strong>{{ category.name }}</strong> ?
+
+        </p>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <button class="btn btn-danger">
+                Yes, Delete
+            </button>
+
+            <a href="{% url 'admin_dashboard:category_list' %}"
+               class="btn btn-secondary">
+                Cancel
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
